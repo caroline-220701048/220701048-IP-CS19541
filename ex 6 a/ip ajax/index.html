@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest Example</title>
+    <script>
+        function loadXMLDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("server-info").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "rec.txt", true);
+            xhttp.send();
+        }
+    </script>
+    <style>
+        div {
+            height: auto;
+            width: 40%;
+            padding: 1.5%;
+            border-radius: 10px;
+            margin-bottom: 2%;
+            border: solid 2px #6a0dad;
+            background-color: #b19cd9;
+            font-size: 18px;
+            color: white;
+            text-align: justify;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            border-radius: 20px;
+            border: solid 2px #6a0dad;
+            background-color: #9370db;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-family: Georgia, serif;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #7a42a8;
+        }
+
+        @media screen and (max-width: 768px) {
+            div {
+                width: 80%;
+                padding: 3%;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div id="server-info">Information about RAJALAKSHMI ENGINEERING COLLEGE.</div>
+        <button onclick="loadXMLDoc()">GET INFO</button>
+    </center>
+</body>
+
+</html>
