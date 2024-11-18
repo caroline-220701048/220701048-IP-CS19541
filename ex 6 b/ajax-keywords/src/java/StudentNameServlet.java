@@ -22,7 +22,7 @@ import java.util.List;
 public class StudentNameServlet extends HttpServlet {
 
     private static final List<String> studentNames = Arrays.asList(
-            "BhanuPriya S", "Bharath Kumar L", "Bhargavi K", "Bhuvaanesh R", "Bhuvaneswari M", "Deepthi P", "Chanddraprakash S"
+            "BhanuPriya S", "Bharath Kumar L", "Bhargavi K", "Bhuvaanesh R", "Bhuvaneswari M", "Deepthi P"
     );
 
     @Override
