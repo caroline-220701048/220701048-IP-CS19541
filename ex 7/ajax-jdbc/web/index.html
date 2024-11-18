@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2, h3 {
+            color: #5c67f2;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #555;
+        }
+
+        select {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 2px solid #5c67f2;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        select:focus {
+            border-color: #7c85f7;
+            background-color: #eef0fc;
+        }
+
+        #studentDetails {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #5c67f2;
+            border-radius: 8px;
+            background-color: #eef0fc;
+            width: 80%;
+            max-width: 500px;
+            text-align: left;
+            display: none; /* Initially hidden */
+        }
+
+        p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        function getStudentDetails() {
+            var regNo = document.getElementById("regNo").value;
+            var detailsDiv = document.getElementById("studentDetails");
+            
+            if (regNo === "Select") {
+                detailsDiv.innerHTML = ""; // Clear if 'Select' is chosen
+                detailsDiv.style.display = "none";
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "StudentServlet?regNo=" + regNo, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    detailsDiv.innerHTML = xhr.responseText;
+                    detailsDiv.style.display = "block"; // Show details when fetched
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Select Student Register Number:</h2>
+    
+    <label for="regNo">Register Number: </label>
+    <select id="regNo" onchange="getStudentDetails()">
+        <option value="Select">Select</option>
+        <option value="101">101</option>
+        <option value="102">102</option>
+        <option value="103">103</option>
+        <option value="104">104</option>
+        <option value="105">105</option>
+    </select>
+
+    <h3>Student Details:</h3>
+    <div id="studentDetails"></div>
+</body>
+</html>
